@@ -46,7 +46,7 @@ class SuperchargeObject
 
     protected static function _retrieve($id)
     {
-        $client = new Client(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
+        $client = new ApiClient(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
         $resp = $client->request('get', self::classUrl().'/'.$id);
         $obj = new static();
 
@@ -55,7 +55,7 @@ class SuperchargeObject
 
     protected static function _all()
     {
-        $client = new Client(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
+        $client = new ApiClient(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
         $resp = $client->request('get', self::classUrl());
         $ret = [];
         foreach ($resp as $item) {
@@ -68,7 +68,7 @@ class SuperchargeObject
 
     protected static function _create($params)
     {
-        $client = new Client(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
+        $client = new ApiClient(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
         $resp = $client->request('post', self::classUrl(), $params);
         if (isset($resp['id'])) {
             $obj = new static();
@@ -80,7 +80,7 @@ class SuperchargeObject
 
     protected static function _update($id, $params)
     {
-        $client = new Client(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
+        $client = new ApiClient(Supercharge::getUsername(), Supercharge::getPassword(), Supercharge::getApiBase());
         $resp = $client->request('put', self::classUrl().'/'.$id, $params);
     }
 
